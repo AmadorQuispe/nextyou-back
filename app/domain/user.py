@@ -1,10 +1,11 @@
 from dataclasses import dataclass
-import datetime
+from datetime import datetime
+from uuid import UUID
 
 @dataclass
 class User:
-    id: str
+    id: UUID
     external_id: str
     provider: str #!TODO: enum
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime | None

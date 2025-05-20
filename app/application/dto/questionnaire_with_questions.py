@@ -1,12 +1,13 @@
 from dataclasses import dataclass
+from typing import List
 from uuid import UUID
-from datetime import datetime
 
+from app.domain.question import Question
 
 @dataclass
-class Questionnaire:
+class QuestionnaireWithQuestions:
     id: UUID
     title: str
     description: str
     position: int
-    created_at: datetime
+    questions: List[Question]

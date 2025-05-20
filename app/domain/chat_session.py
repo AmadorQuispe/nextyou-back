@@ -1,10 +1,11 @@
 from dataclasses import dataclass
-import datetime
+from datetime import datetime
+from uuid import UUID
 
 @dataclass
 class ChatSession:
-    id: str
-    user_id: str
+    id: UUID
+    user_id: UUID
     title: str
     started_at: datetime
-    ended_at: datetime
+    ended_at: datetime | None

@@ -1,11 +1,12 @@
 from dataclasses import dataclass
-import datetime
+from datetime import datetime
+from uuid import UUID
 
 @dataclass
 class Answer:
-    id: str
-    user_id: str
-    question_id: str
-    answer_text: str
+    id: UUID
+    user_id: UUID
+    question_id: UUID
+    content: str
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime | None = None

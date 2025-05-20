@@ -1,0 +1,36 @@
+# Ignorar archivos y carpetas específicas
+
+**pycache**/
+_.pyc
+_.pyo
+_.pyd
+_.db
+\*.sqlite3
+
+# Ignorar archivos de configuración y entornos virtuales
+
+.env
+.venv/
+venv/
+env/
+ENV/
+test-api.http
+./test-api.http
+
+# Ignorar archivos de logs
+
+\*.log
+
+# Ignorar archivos de configuración de IDEs
+
+.vscode/
+.idea/
+_.sublime-project
+_.sublime-workspace
+
+# Ignorar archivos de Docker
+
+Dockerfile
+docker-compose.yml
+test-api.http
+test-data.json
