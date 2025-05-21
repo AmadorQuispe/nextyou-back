@@ -8,7 +8,7 @@ from app.infrastructure.container import Container
 router = APIRouter(prefix="/auth", tags=["Auth"])
 container = Container()
 
-@router.post("/session", response_model=UserSessionResponse)
+@router.get("/session", response_model=UserSessionResponse)
 async def create_session(request: Request, response: Response):
     if(request.headers.get("Authorization") is None):
         raise HTTPException(status_code=401, detail="No token provided")
@@ -35,7 +35,7 @@ async def create_session(request: Request, response: Response):
         value=token,
         httponly=True,
         secure=True,
-        samesite="Strict",
+        samesite="none",
         max_age=60 * 60 * 24 * 7
     )
 

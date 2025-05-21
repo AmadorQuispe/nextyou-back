@@ -7,7 +7,12 @@ class Postgres:
         self._pool: Optional[asyncpg.pool.Pool] = None
 
     async def connect(self):
-        self._pool = await asyncpg.create_pool(dsn=self._dsn)
+        self._pool = await asyncpg.create_pool(
+            dsn=self._dsn,
+            min_size=1,
+            max_size=10,
+            statement_cache_size=0
+        )
 
     async def disconnect(self):
         if self._pool:

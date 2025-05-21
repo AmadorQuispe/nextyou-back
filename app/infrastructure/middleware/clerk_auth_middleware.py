@@ -1,5 +1,5 @@
 from starlette.middleware.base import BaseHTTPMiddleware
-from fastapi import Request, Response
+from fastapi import HTTPException, Request, Response
 from starlette.types import ASGIApp
 
 from app.infrastructure.clerk.verify_token import verify_token
@@ -19,8 +19,14 @@ class ClerkAuthMiddleware(BaseHTTPMiddleware):
         if not any(request.url.path.startswith(p) for p in self.protected_paths):
             return await call_next(request)
 
-        #token = request.cookies.get("access_token")
-        token = request.cookies.get("__session")
+        
+        if(request.headers.get("Authorization") is None):
+            raise HTTPException(status_code=401, detail="No token provided")
+        
+        authorization = request.headers.get("Authorization")
+        if not authorization.startswith("Bearer "):
+            return Response("Unauthorized", status_code=401, headers={"WWW-Authenticate": "Bearer"})
+        token = authorization.split(" ")[1]
 
         if not token:
             return Response("Unauthorized", status_code=401)
