@@ -5,7 +5,6 @@ from app.application.dto.chat_context import ChatContext
 
 class OpenaiLLMProvider:
     def __init__(self, api_key: str):
-        print(api_key)
         self.client = AsyncOpenAI(api_key=api_key, base_url="https://api.groq.com/openai/v1")
         self.model = "llama-3.3-70b-versatile"
 

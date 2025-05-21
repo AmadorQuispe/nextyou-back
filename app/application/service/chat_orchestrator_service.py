@@ -59,7 +59,6 @@ class ChatOrchestratorService:
             #await self.chat_session_uc.update_title(session_id, title)
 
         # Emitir session_id y título si fue una nueva sesión
-        print(f"session_id: {session_id}")
         if is_new_session:
             yield {
                 "session_id": str(session_id),
@@ -103,7 +102,6 @@ class ChatOrchestratorService:
         # 6. Llamar al proveedor LLM
         full_response = ""
         async for chunk in self.llm_provider.stream_chat(context):
-            print(chunk)
             full_response += chunk
             yield {"data": chunk}  # chunk del LLM
 
